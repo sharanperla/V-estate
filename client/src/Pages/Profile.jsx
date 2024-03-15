@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRef } from 'react';
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage';
 import {app} from '../firebase.jsx'
+import {Link} from 'react-router-dom'
 import { updateUserStart,updateUserSuccess,updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutStart, signInFailure, signOutFailure, signOutSuccess } from '../redux/user/userSlice.js';
 
 
@@ -160,6 +161,7 @@ function Profile() {
       <input onChange={handleChange} type="text" name="" id="email" placeholder='email' className='border p-3 rounded-lg ' defaultValue={currentUser.email}/>
       <input onChange={handleChange} type="password" name="" id="password" placeholder='password' className='border p-3 rounded-lg ' />
       <button disabled={loading} className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'>{loading?'Loading...':'Update'}</button>
+      <Link to={"/create-listing "} className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95 '>Create Listing</Link>
     </form>
     <div className='flex justify-between mt-5'>
       <span className='text-red-700 cursor-pointer  ' onClick={handleDeleteUser}>Delete Account</span>
@@ -167,7 +169,7 @@ function Profile() {
     </div>
     <p className='text-red-700 mt-5 text-center'>
       {error? error : ''}
-    </p>
+    </p> 
     <p className='text-green-700 mt-5 text-center'>
       {updateSuccess? 'user updated successfully' : ''}
     </p>
