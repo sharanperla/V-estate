@@ -7,7 +7,7 @@ import Profile from './Pages/Profile'
 import SignIn from './Pages/SignIn'
 import Header from './Components/Header'
 import PrivateRoute from './Components/PrivateRoute'
-import CreateListing from './Pages/CreateListing'
+import CreateListing from './Pages/CreateListing.jsx'
 
 
 
