@@ -52,6 +52,7 @@ function Profile() {
   console.log(data);
   if(data.success===false){
     dispatch(updateUserFailure(data.message))
+ 
     return; 
   }
   console.log('success');
