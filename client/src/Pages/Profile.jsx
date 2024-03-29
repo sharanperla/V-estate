@@ -16,9 +16,11 @@ function Profile() {
   const [filePerc,setFileperc]=useState(0)
   const [fileUploadError,setFileUploadError]=useState(false)
   const [formData,setFormData]=useState({});
+  const [showListingError,setShowListingError]=useState(false);
   console.log(filePerc);
   console.log(formData);
   console.log(fileUploadError); 
+  const [userListings,setUserListings]=useState({});
   // service firebase.storage {
   //   match /b/{bucket}/o {
   //     match /{allPaths=**} {
@@ -139,6 +141,26 @@ function Profile() {
 
   }
   console.log(error);
+
+  const handleShowListing= async ()=>{
+try {
+  setShowListingError(false)
+  const res=await fetch(`/api/user/listings/${currentUser._id}`)
+  const data=await res.json();
+  if(data.success===false)
+  {
+    console.log('in success');
+    setShowListingError(true)
+    return;
+  }
+  setUserListings(data)
+} catch (error) {
+  setShowListingError(true)
+  
+}
+
+  }
+  console.log(userListings)
   return (
     <div className='p-3 max-w-lg mx-auto'>
     <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -171,9 +193,35 @@ function Profile() {
     <p className='text-red-700 mt-5 text-center'>
       {error? error : ''}
     </p> 
+
+    <button className='text-green-700 w-full' onClick={handleShowListing}> Show listing </button>
+    <p className='text-red-700 mt-5 text-center'>
+    {showListingError&&'error in showing'}
+    </p>
     <p className='text-green-700 mt-5 text-center'>
       {updateSuccess? 'user updated successfully' : ''}
     </p>
+    {
+      userListings && userListings.length>0 && 
+      <div className='flex flex-col gap-4'>
+        <h1 className='text-center mt-7 text-2xl font-semibold'>Your Listings</h1>
+     {userListings.map((listings)=>{
+        return (<div key={listings._id} className='border rounded-lg p-3 flex justify-between items-center gap-4'>
+           <Link to={`/listing/${listings._id}`}>
+             <img src={listings.imageUrls[0]} alt="listing cover"  className='h-16 w-16b object-contain rounded-lg'/>
+           </Link>   
+           <Link to={`/listing/${listings._id}`} className='text-slate-700 font-semibold hover:underline truncate flex-1'>
+            <p>{listings.name}</p>
+           </Link>   
+           <div className='flex flex-col items-center'>
+            <button className='text-red-700 uppercase '>Delete</button>
+            <button className='text-red-700 uppercase '>edit</button>
+           </div>
+          </div>)
+      })
+    }
+      </div>
+    }
     </div>
   ) 
 }
