@@ -234,7 +234,9 @@ try {
            </Link>   
            <div className='flex flex-col items-center'>
             <button onClick={handleDeleteListing} className='text-red-700 uppercase '>Delete</button>
-            <button className='text-red-700 uppercase '>edit</button>
+            <Link to={`/update-listing/${listings._id}`}>
+            <button className='text-green-700 uppercase '>edit</button>
+            </Link>
            </div>
           </div>)
       })
