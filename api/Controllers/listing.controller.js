@@ -50,6 +50,7 @@ export const updateListing=async (req,res,next)=>{
     }
 }
 
+
 export const getListing=async (req,res,next)=>{
 
     const listing =await Listing.findById(req.params.id);
@@ -58,6 +59,22 @@ export const getListing=async (req,res,next)=>{
     }
 
     try {
+         return res.status(200).json(listing);
+} catch (error) {
+    next(error);
+    console.log(error);
+}
+}
+
+
+export const getListingss=async (req,res,next)=>{
+    try {
+    const listing =await Listing.find({});
+    if(!listing){
+        return next(errorHandler(404,'listing not found'))
+    }
+
+   
          return res.status(200).json(listing);
 } catch (error) {
     next(error);
