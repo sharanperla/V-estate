@@ -254,7 +254,7 @@ function CreateListing() {
             <div className=" flex gap-2">
               <input
                 type="checkbox"
-                name=""
+                name="offer"
                 id="offer"
                 className="w-5"
                 onChange={handleChange}

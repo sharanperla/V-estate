@@ -77,7 +77,7 @@ function Search() {
   console.log(listing)
 
   const handleChange=(e)=>{
-     if(e.target.id=== 'all' || e.target.id=== 'rent' || e.target.id=== 'sale' )
+     if(e.target.id=== 'all' || e.target.id=== 'rent' || e.target.id=== 'sell' )
      {
       setSideBarData({...sideBarData,type:e.target.id })
      }
@@ -88,7 +88,7 @@ function Search() {
 
     if(e.target.id==='parking' || e.target.id==='furnished' || e.target.id==='offer' )
     {
-      setSideBarData({...sideBarData,[e.target.id]:e.target.checked || e.target.checked === 'true' ?true : false,})
+      setSideBarData({...sideBarData,[e.target.id]:e.target.checked || e.target.checked === 'true' ? true : false,})
     }
 
     if(e.target.id==='order')
@@ -161,7 +161,7 @@ function Search() {
               <span>Rent </span>
             </div>
             <div className="flex gap-2">
-              <input type="checkbox" id="sale" className="w-5" onChange={handleChange} checked={sideBarData.type==='sale'}/>
+              <input type="checkbox" id="sell" className="w-5" onChange={handleChange} checked={sideBarData.type==='sell'}/>
               <span>Sale</span>
             </div>
             <div className="flex gap-2">
