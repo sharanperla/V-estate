@@ -98,13 +98,7 @@ export const getListingss = async (req, res, next) => {
     return res.status(200).json(listings);
 
 
-
-
-
-
-
-
-  } catch (error) {
+ } catch (error) {
     next(error);
     console.log(error);
   }

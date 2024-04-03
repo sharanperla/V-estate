@@ -17,7 +17,7 @@ const userSchema=new mongoose.Schema({
     },
     avatar:{
         type: String,
-        default:"https://www.istockphoto.com/signature/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration-gm1300845620-393045799",
+        default:"https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg",
     },
 
 
